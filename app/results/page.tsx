@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../firebase";
+import Link from "next/link";
 
 const ResultsPage = () => {
   const [votes, setVotes] = useState<Record<string, number>>({});
@@ -36,16 +37,28 @@ const ResultsPage = () => {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto py-8 text-white">
-      <h1 className="text-3xl font-bold mb-6">Song Votes</h1>
-      <ul className="list-disc pl-6">
-        {Object.keys(votes).map((song) => (
-          <li key={song}>
-            {song}: {votes[song]} votes
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className="h-screen flex flex-col justify-center items-center bg-slate-900 bg-opacity-70 gap-10">
+      <h1 className="text-3xl text-center md:text-4xl lg:text-5xl font-bold text-white">
+        Thank you for submitting your setlist!
+      </h1>
+      <div className="flex flex-col w-[90%] md:w-1/2 p-5 bg-slate-900 bg-opacity-20 backdrop-blur-md text-white rounded-xl shadow-lg shadow-black">
+        <h2 className="text-3xl font-bold mb-6">Song Votes</h2>
+        <ul className="list-disc pl-6">
+          {Object.keys(votes).map((song) => (
+            <li key={song}>
+              {song}: {votes[song]} votes
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Link
+        href="https://www.songkick.com/artists/1084890-beauty-school"
+        target="_blank"
+        className="bg-teal-400 text-white px-5 py-2 rounded text-xl font-bold"
+      >
+        Buy Tickets!
+      </Link>
+    </section>
   );
 };
 
