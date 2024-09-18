@@ -5,6 +5,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import SetlistForm from "../components/SetlistForm";
 
+interface SetlistData {
+  name: string;
+  selectedSongs: string[];
+}
+
 const HomePage = () => {
   const router = useRouter();
 
@@ -26,7 +31,7 @@ const HomePage = () => {
     "Junior",
   ];
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: SetlistData) => {
     try {
       await addDoc(collection(db, "setlists"), formData);
       router.push("/results");

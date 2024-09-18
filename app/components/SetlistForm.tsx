@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 interface SetlistFormProps {
   songs: string[];
-  onSubmit: (data: any) => void;
+  onSubmit: (data: { name: string; selectedSongs: string[] }) => void;
 }
 
 const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
