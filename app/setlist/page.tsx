@@ -1,32 +1,45 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import SetList from "../components/SetList";
-import Link from "next/link";
-import "./setlist.css";
 
-export default function Setlist() {
-  const [name, setName] = useState("");
+import { useRouter } from "next/navigation";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/firebase";
+import SetlistForm from "../components/SetlistForm";
+
+const HomePage = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    const storedName = localStorage.getItem("name");
-    if (storedName) {
-      setName(storedName);
-    } else router.push("/");
-  }, []);
+  const songs = [
+    "Cowboy Milk",
+    "Reaper",
+    "Gloom",
+    "Take It Slow",
+    "Silver",
+    "Oak",
+    "Pawn Shop Jewels",
+    "Only Nature",
+    "Ekimae",
+    "Monster",
+    "Drysocket",
+    "Evergreen",
+    "Happiness",
+    "Nightwalker",
+    "Junior",
+  ];
+
+  const handleSubmit = async (formData: any) => {
+    try {
+      await addDoc(collection(db, "setlists"), formData);
+      router.push("/results");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
 
   return (
-    <main>
-      <section className="h-screen flex flex-col justify-center items-center bg-slate-900 bg-opacity-70">
-        <h1 className="font-bold uppercase text-4xl text-white">
-          Setlist by {name}
-        </h1>
-        <SetList />
-        <Link className="text-white" href={"/home"}>
-          Submit
-        </Link>
-      </section>
-    </main>
+    <div className="h-screen bg-slate-900 bg-opacity-70 flex justify-center items-center">
+      <SetlistForm songs={songs} onSubmit={handleSubmit} />
+    </div>
   );
-}
+};
+
+export default HomePage;

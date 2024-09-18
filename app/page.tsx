@@ -1,31 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
-  const [name, setName] = useState("");
-  const router = useRouter();
-
-  useEffect(() => {
-    localStorage.removeItem("name");
-  }, []);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    localStorage.setItem("name", name);
-    setName(name);
-    router.push("/setlist");
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const form = event.currentTarget.form;
-      if (form) {
-        form.dispatchEvent(new Event("submit", { cancelable: true }));
-      }
-    }
-  };
   return (
     <div>
       <main className="flex justify-center items-center flex-col h-screen gap-7 bg-slate-900 bg-opacity-70 text-white">
@@ -34,27 +10,17 @@ export default function Home() {
             Beauty School
           </h1>
           <p className="text-md md:text-xl">
-            Choose our setlist for our tour in October w/JetSki
+            We're going on tour in October with JetSki.
+            <br />
+            Help us choose the setlist for our shows!
           </p>
         </div>
-        <form
-          action="submit"
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-4"
+        <Link
+          className="bg-slate-900 hover:bg-slate-600 hover:scale-110 duration-100 transition-all ease-in-out px-5 py-2 text-xl rounded font-bold"
+          href={"/setlist"}
         >
-          <input
-            type="text"
-            className="border-2 border-black text-black rounded p-2"
-            placeholder="Enter your name"
-            id="name"
-            required
-            onChange={(e) => setName(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button className="bg-slate-900 text-white py-2 rounded hover:bg-slate-600 text-center">
-            Submit
-          </button>
-        </form>
+          Enter
+        </Link>
       </main>
     </div>
   );
