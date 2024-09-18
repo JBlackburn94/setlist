@@ -10,7 +10,7 @@ export default function Home() {
             Beauty School
           </h1>
           <p className="text-md md:text-xl">
-            We're going on tour in October with JetSki.
+            We are going on tour in October with JetSki.
             <br />
             Help us choose the setlist for our shows!
           </p>
