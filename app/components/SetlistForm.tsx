@@ -64,7 +64,7 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
               transition={{ delay: 0.3 * index }}
               value={selectedSongs[index]}
               onChange={(e) => handleSongSelect(index, e.target.value)}
-              className="border-b-2 border-b-black"
+              className="border-b-2 border-b-black appearance-none"
               required
             >
               <option value="">-- Select a Song --</option>
