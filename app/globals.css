@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+  -webkit-appearance: none !important;
+  border-radius: 0;
+}
+
 body {
   background-image: url("../public/setlist-bg.png");
   background-repeat: repeat;
