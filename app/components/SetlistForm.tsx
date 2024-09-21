@@ -60,14 +60,18 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
             transition={{ delay: 0.1 * index }}
             value={selectedSongs[index]}
             onChange={(e) => handleSongSelect(index, e.target.value)}
-            className="p-2 border-b-white w-full bg-white text-black appearance-none bg-transparent"
+            className="border-b-2 border-b-white w-full appearance-none bg-transparent text-white"
             required
           >
             <option value="" className="w-full">
               --
             </option>
             {songs.map((song) => (
-              <option key={song} value={song} className="text-black bg-white">
+              <option
+                key={song}
+                value={song}
+                className="text-black bg-white appearance-none"
+              >
                 {song}
               </option>
             ))}
