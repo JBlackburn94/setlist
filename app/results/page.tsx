@@ -18,7 +18,6 @@ const ResultsPage = () => {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
 
-        // Ensure data.selectedSongs is an array before processing
         if (Array.isArray(data.selectedSongs)) {
           data.selectedSongs.forEach((song: string) => {
             if (newVotes[song]) {
@@ -33,36 +32,11 @@ const ResultsPage = () => {
       setVotes(newVotes);
     });
 
-    // Cleanup on unmount
     return () => unsubscribe();
   }, []);
 
   return (
     <section className="h-screen flex flex-col justify-center items-center bg-slate-900 bg-opacity-70">
-      <motion.span
-        initial={{ y: 0 }}
-        animate={{ y: "-200%" }}
-        transition={{ duration: 0.4 }}
-        className="h-screen w-full absolute bg-slate-900 z-40"
-      ></motion.span>
-      <motion.span
-        initial={{ y: 0 }}
-        animate={{ y: "-200%" }}
-        transition={{ delay: 0.2, duration: 0.4 }}
-        className="h-screen w-full absolute bg-slate-600 z-30"
-      ></motion.span>
-      <motion.span
-        initial={{ y: 0 }}
-        animate={{ y: "-200%" }}
-        transition={{ delay: 0.3, duration: 0.4 }}
-        className="h-screen w-full absolute bg-slate-900 z-20"
-      ></motion.span>
-      <motion.span
-        initial={{ y: 0 }}
-        animate={{ y: "-200%" }}
-        transition={{ delay: 0.4, duration: 0.4 }}
-        className="h-screen w-full absolute bg-slate-600 z-10"
-      ></motion.span>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
