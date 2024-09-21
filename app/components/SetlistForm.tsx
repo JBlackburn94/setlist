@@ -43,7 +43,7 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="p-2 border-2 border-teal-400 w-full mb-10 text-black"
+          className="p-2 w-full mb-10 text-black"
           required
         />
       </div>
