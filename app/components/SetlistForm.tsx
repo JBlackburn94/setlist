@@ -34,7 +34,7 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
       className="flex flex-col justify-center items-center text-white w-[80%] p-5 bg-slate-900 bg-opacity-40 backdrop-blur-sm rounded"
       onSubmit={handleSubmit}
     >
-      <div>
+      <div className="w-[80%] md:w-[40%]">
         <motion.input
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -43,12 +43,15 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="p-2 border-2 border-teal-400  mb-10 text-black"
+          className="p-2 border-2 border-teal-400 w-full mb-10 text-black"
           required
         />
       </div>
       {selectedSongs.map((_, index) => (
-        <div key={index} className="flex gap-2 my-3 h-auto overflow-hidden">
+        <div
+          key={index}
+          className="flex gap-2 my-3 h-auto w-[80%] md:w-[40%] overflow-hidden"
+        >
           <label>{index + 1}. </label>
           <motion.select
             initial={{ y: "100%" }}
@@ -56,10 +59,12 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
             transition={{ delay: 0.1 * index }}
             value={selectedSongs[index]}
             onChange={(e) => handleSongSelect(index, e.target.value)}
-            className="border-b-2 border-b-white appearance-none bg-transparent"
+            className="border-b-2 border-b-white w-full appearance-none bg-transparent"
             required
           >
-            <option value="">-- Select a Song --</option>
+            <option value="" className="w-full">
+              --
+            </option>
             {songs.map((song) => (
               <option key={song} value={song}>
                 {song}
