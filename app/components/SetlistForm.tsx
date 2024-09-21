@@ -18,6 +18,7 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
     const uniqueSongs = new Set(selectedSongs);
     if (uniqueSongs.size !== selectedSongs.length) {
       alert("Please select different songs for each slot.");
+
       return;
     }
     onSubmit({ name, selectedSongs });
@@ -31,7 +32,7 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
 
   return (
     <form
-      className="flex flex-col justify-center items-center text-white w-[80%] p-5 bg-slate-900 bg-opacity-40 backdrop-blur-sm rounded"
+      className="flex flex-col justify-center items-center w-[80%] p-5 bg-slate-900 bg-opacity-40 backdrop-blur-sm rounded"
       onSubmit={handleSubmit}
     >
       <div className="w-[80%] md:w-[40%]">
@@ -52,21 +53,21 @@ const SetlistForm: React.FC<SetlistFormProps> = ({ songs, onSubmit }) => {
           key={index}
           className="flex gap-2 my-3 h-auto w-[80%] md:w-[40%] overflow-hidden"
         >
-          <label>{index + 1}. </label>
+          <label className="text-white">{index + 1}. </label>
           <motion.select
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ delay: 0.1 * index }}
             value={selectedSongs[index]}
             onChange={(e) => handleSongSelect(index, e.target.value)}
-            className="border-b-2 border-b-white w-full appearance-none bg-transparent"
+            className="p-2 border-b-white w-full bg-white text-black appearance-none bg-transparent"
             required
           >
             <option value="" className="w-full">
               --
             </option>
             {songs.map((song) => (
-              <option key={song} value={song}>
+              <option key={song} value={song} className="text-black bg-white">
                 {song}
               </option>
             ))}
