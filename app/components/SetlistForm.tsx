@@ -1,5 +1,3 @@
-import Image from "next/image";
-import paper from "../../public/paper.png";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 

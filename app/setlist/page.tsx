@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import SetlistForm from "../components/SetlistForm";
-import { motion } from "framer-motion";
 
 interface SetlistData {
   name: string;
